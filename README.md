@@ -1,2 +1,2 @@
-# Our Project for DBMS starts
-Hi I have cloned this repo.
+# WholeSale Distributor System
+Our Project for CSE-361 course (Database Management System)
