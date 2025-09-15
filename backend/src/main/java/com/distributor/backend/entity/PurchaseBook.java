@@ -27,9 +27,11 @@ public class PurchaseBook {
     @Column(name = "Order_Year", nullable = false)
     private int orderYear;
 
-    @Column(name = "Carrier", nullable = false)
-    private String carrier;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "Carrier", referencedColumnName = "license_number")
+    private Driver carrier;
 
-    @Column(name = "Provider", nullable = false)
-    private String provider;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "Provider", referencedColumnName = "gst_number")
+    private Supplier provider;
 }

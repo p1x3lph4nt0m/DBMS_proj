@@ -19,7 +19,7 @@ public class SalesBookDto {
 
     private int orderYear;
 
-    private String carrier;
+    private String carrierLicenseNumber;   // Foreign key to Driver.licenseNumber
 
-    private String customer;
+    private String customerGstNumber;      // Foreign key to Supplier.gstNumber
 }

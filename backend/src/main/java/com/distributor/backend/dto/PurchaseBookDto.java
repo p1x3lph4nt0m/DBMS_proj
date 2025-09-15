@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PurchaseBookDto {
-    
+
     private Long billNumber;
 
     private int orderDay;
@@ -19,7 +19,7 @@ public class PurchaseBookDto {
 
     private int orderYear;
 
-    private String carrier;
+    private String carrierLicenseNumber;   // Foreign key to Driver.licenseNumber
 
-    private String provider;
+    private String providerGstNumber;      // Foreign key to Supplier.gstNumber
 }

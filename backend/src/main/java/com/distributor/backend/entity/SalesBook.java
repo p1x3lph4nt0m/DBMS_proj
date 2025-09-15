@@ -27,9 +27,11 @@ public class SalesBook {
     @Column(name = "Order_Year", nullable = false)
     private int orderYear;
 
-    @Column(name = "Carrier", nullable = false)
-    private String carrier;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "Carrier", referencedColumnName = "license_number")
+    private Driver carrier;
 
-    @Column(name = "Customer", nullable = false)
-    private String customer;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "Customer", referencedColumnName = "gst_number")
+    private Supplier customer;
 }
