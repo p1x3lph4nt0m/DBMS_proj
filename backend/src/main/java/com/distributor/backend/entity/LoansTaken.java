@@ -12,10 +12,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "loans_taken")
+@IdClass(LoansTakenId.class)
 public class LoansTaken {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     @Column(name = "Rate")
@@ -36,7 +36,8 @@ public class LoansTaken {
     @Column(name = "Duration")
     private Integer duration;
 
-    @ManyToOne(optional = false)
+    @Id
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "gst_number", nullable = false)
     private Supplier supplier;
 }

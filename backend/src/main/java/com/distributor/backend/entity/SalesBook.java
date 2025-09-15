@@ -27,11 +27,11 @@ public class SalesBook {
     @Column(name = "Order_Year", nullable = false)
     private int orderYear;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "Carrier", referencedColumnName = "license_number")
     private Driver carrier;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "Customer", referencedColumnName = "gst_number")
-    private Supplier customer;
+    private Buyer customer;
 }

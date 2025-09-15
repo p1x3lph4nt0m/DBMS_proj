@@ -11,9 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "PurchaseList")
-@IdClass(PurchaseListId.class) // Composite Key Class
-public class PurchaseList {
+@Table(name = "SalesList")
+@IdClass(SalesListId.class) // Composite Key Class
+public class SalesList {
 
     @Id
     @Column(name = "Bill_Number")
@@ -29,12 +29,10 @@ public class PurchaseList {
     @Column(name = "Quantity")
     private Long quantity;
 
-    // Foreign key to PurchaseBook
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Bill_Number", insertable = false, updatable = false)
-    private PurchaseBook purchaseBook;
+    @JoinColumn(name = "Bill_Number", insertable = false, updatable = false )
+    private SalesBook salesBook;
 
-    // Foreign key to Items
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Item_Id", insertable = false, updatable = false)
     private Items item;
