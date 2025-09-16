@@ -4,11 +4,9 @@ import com.distributor.backend.dto.SalesBookDto;
 import com.distributor.backend.entity.Buyer;
 import com.distributor.backend.entity.Driver;
 import com.distributor.backend.entity.SalesBook;
-import com.distributor.backend.entity.Supplier;
 import com.distributor.backend.exception.ResourceNotFoundException;
 import com.distributor.backend.repository.BuyerRepository;
 import com.distributor.backend.repository.DriverRepository;
-import com.distributor.backend.repository.SalesBookRepository;
 
 public class SalesBookMapper {
     public static DriverRepository driverRepository;
@@ -26,7 +24,7 @@ public class SalesBookMapper {
     public static SalesBook maptoSalesBook(SalesBookDto salesBookDto){
         Driver driver = driverRepository.findById(salesBookDto.getCarrierLicenseNumber())
                 .orElseThrow(
-                        () -> new ResourceNotFoundException("Supplier does not exist with the gst number: "+ salesBookDto.getCarrierLicenseNumber())
+                        () -> new ResourceNotFoundException("Driver does not exist with the License number: "+ salesBookDto.getCarrierLicenseNumber())
                 );
         Buyer buyer = buyerRepository.findById(salesBookDto.getCustomerGstNumber())
                 .orElseThrow(
