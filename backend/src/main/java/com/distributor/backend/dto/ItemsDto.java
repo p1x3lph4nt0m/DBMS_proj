@@ -17,5 +17,5 @@ public class ItemsDto {
     private Long quantity;
     private Double sp;
     private Double mrp;
-    private Double wt;
+    private String wt;
 }

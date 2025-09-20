@@ -18,7 +18,7 @@ public class Items {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @Column(name = "Name", nullable = false, unique = true)
+    @Column(name = "Name", nullable = false)
     private String name;
 
     @Column(name = "Tax_Rate")
@@ -37,5 +37,5 @@ public class Items {
     private Double mrp;
 
     @Column(name = "Weight")
-    private Double wt;
+    private String wt;
 }
