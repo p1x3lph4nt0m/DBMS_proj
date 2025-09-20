@@ -10,12 +10,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ItemsDto {
-    private Long Id;
+    private Long id;
     private String name;
-    private Double taxRate;
+    private Double tax;
     private String company;
-    private Long quantity;
-    private Double sp;
+    private Long stock;
+    private Double price;
     private Double mrp;
-    private String wt;
+    private String weight;
 }

@@ -9,12 +9,12 @@ public class ItemsMapper {
         return new ItemsDto(
                 items.getId(),
                 items.getName(),
-                items.getTaxRate(),
+                items.getTax(),
                 items.getCompany(),
-                items.getQuantity(),
-                items.getSp(),
+                items.getStock(),
+                items.getPrice(),
                 items.getMrp(),
-                items.getWt()
+                items.getWeight()
         );
     }
 
@@ -22,12 +22,12 @@ public class ItemsMapper {
         return new Items(
                 itemsDto.getId(),
                 itemsDto.getName(),
-                itemsDto.getTaxRate(),
+                itemsDto.getTax(),
                 itemsDto.getCompany(),
-                itemsDto.getQuantity(),
-                itemsDto.getSp(),
+                itemsDto.getStock(),
+                itemsDto.getPrice(),
                 itemsDto.getMrp(),
-                itemsDto.getWt()
+                itemsDto.getWeight()
         );
     }
 }

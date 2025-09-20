@@ -16,26 +16,26 @@ public class Items {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @Column(name = "Name", nullable = false)
     private String name;
 
     @Column(name = "Tax_Rate")
-    private Double taxRate;
+    private Double tax;
 
     @Column(name = "Company", nullable = false)
     private String company;
 
     @Column(name = "Available_Quantity")
-    private Long quantity;
+    private Long stock;
 
     @Column(name = "Selling_Price")
-    private Double sp;
+    private Double price;
 
     @Column(name = "Max_Retail_Price")
     private Double mrp;
 
     @Column(name = "Weight")
-    private String wt;
+    private String weight;
 }
