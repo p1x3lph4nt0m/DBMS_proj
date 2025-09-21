@@ -17,8 +17,8 @@ public class SalesBookMapper {
                 salesbook.getOrderDay(),
                 salesbook.getOrderMonth(),
                 salesbook.getOrderYear(),
-                salesbook.getCarrier().getLicenseNumber(),
-                salesbook.getCustomer().getGstNumber()
+                salesbook.getCarrier().getLicense(),
+                salesbook.getCustomer().getGst()
         );
     }
     public static SalesBook maptoSalesBook(SalesBookDto salesBookDto){

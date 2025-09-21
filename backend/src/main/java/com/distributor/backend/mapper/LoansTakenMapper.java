@@ -17,7 +17,7 @@ public class LoansTakenMapper {
                 loansTaken.getMonth(),
                 loansTaken.getYear(),
                 loansTaken.getDuration(),
-                loansTaken.getSupplier().getGstNumber(),
+                loansTaken.getSupplier().getGst(),
                 loansTaken.getSupplier().getName()
         );
     }

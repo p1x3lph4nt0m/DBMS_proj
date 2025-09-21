@@ -28,10 +28,10 @@ public class SalesBook {
     private int orderYear;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "Carrier", referencedColumnName = "license_number")
+    @JoinColumn(name = "Carrier", referencedColumnName = "license")
     private Driver carrier;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "Customer", referencedColumnName = "gst_number")
+    @JoinColumn(name = "Customer", referencedColumnName = "gst")
     private Buyer customer;
 }
