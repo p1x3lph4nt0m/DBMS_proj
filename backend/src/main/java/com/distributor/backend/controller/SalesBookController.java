@@ -19,3 +19,12 @@ public class SalesBookController{
         return new ResponseEntity<>(savedSale, HttpStatus.CREATED);
     }
 }
+
+// {
+//   "bill_number": 1001,
+//   "order_day": 21,
+//   "order_month": 9,
+//   "order_year": 2025,
+//   "carrier": "DL12345",
+//   "customer": "GSTBUY002"
+// }

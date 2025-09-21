@@ -11,9 +11,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PurchaseListDto {
 
-    private Long billNumber;
+    private Long bill_number;
 
-    private Long itemId;
+    private Long item_id;
 
     private Double discount;
 

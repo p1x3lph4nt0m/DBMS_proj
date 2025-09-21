@@ -16,16 +16,16 @@ public class PurchaseBook {
 
     @Id
     @Column(name = "Bill_Number")
-    private Long billNumber;
+    private Long bill_number;
 
     @Column(name = "Order_Day", nullable = false)
-    private int orderDay;
+    private int order_day;
 
     @Column(name = "Order_Month", nullable = false)
-    private int orderMonth;
+    private int order_month;
 
     @Column(name = "Order_Year", nullable = false)
-    private int orderYear;
+    private int order_year;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "Carrier", referencedColumnName = "license")

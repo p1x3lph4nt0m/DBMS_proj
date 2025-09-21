@@ -18,33 +18,42 @@ import com.distributor.backend.service.SalesBookService;
 @AllArgsConstructor
 public class SalesBookServiceImpl implements SalesBookService {
 
-    private  SalesBookRepository salesBookRepository;
-    private  DriverRepository driverRepository;
-    private  BuyerRepository buyerRepository;
+    private final SalesBookRepository salesBookRepository;
+    private final DriverRepository driverRepository;
+    private final BuyerRepository buyerRepository;
 
     @Override
     public SalesBookDto addSales(SalesBookDto salesBookDto) {
-        // Fetch Driver entity by license number
-        Driver carrier = driverRepository.findById(salesBookDto.getCarrierLicenseNumber())
+        // Fetch related Driver
+        Driver carrier = driverRepository.findById(salesBookDto.getCarrier())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Driver not found with license number: " + salesBookDto.getCarrierLicenseNumber()));
+                        "Driver not found with license number: " + salesBookDto.getCarrier()));
 
-        // Fetch Buyer entity by GST number
-        Buyer customer = buyerRepository.findById(salesBookDto.getCustomerGstNumber())
+        // Fetch related Buyer
+        Buyer customer = buyerRepository.findById(salesBookDto.getCustomer())
                 .orElseThrow(() -> new ResourceNotFoundException(
-                        "Customer not found with GST number: " + salesBookDto.getCustomerGstNumber()));
+                        "Customer not found with GST number: " + salesBookDto.getCustomer()));
 
-        // Map DTO to entity (without carrier and customer set yet)
-        SalesBook salesBook = SalesBookMapper.maptoSalesBook(salesBookDto);
+        // Check if SalesBook with this bill number already exists
+        SalesBook salesBook = salesBookRepository.findById(salesBookDto.getBill_number())
+                .map(existing -> {
+                    // Update existing entry
+                    existing.setOrder_day(salesBookDto.getOrder_day());
+                    existing.setOrder_month(salesBookDto.getOrder_month());
+                    existing.setOrder_year(salesBookDto.getOrder_year());
+                    existing.setCarrier(carrier);
+                    existing.setCustomer(customer);
+                    return existing;
+                })
+                .orElseGet(() -> {
+                    // Create new entry
+                    SalesBook newSales = SalesBookMapper.maptoSalesBook(salesBookDto);
+                    newSales.setCarrier(carrier);
+                    newSales.setCustomer(customer);
+                    return newSales;
+                });
 
-        // Set the fetched entities
-        salesBook.setCarrier(carrier);
-        salesBook.setCustomer(customer);
-
-        // Save the salesBook entity
         SalesBook savedSalesBook = salesBookRepository.save(salesBook);
-
-        // Map saved entity to DTO and return
         return SalesBookMapper.maptosalesBookDto(savedSalesBook);
     }
 }

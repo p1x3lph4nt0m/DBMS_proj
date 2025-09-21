@@ -17,11 +17,11 @@ public class PurchaseList {
 
     @Id
     @Column(name = "Bill_Number")
-    private Long billNumber;
+    private Long bill_number;
 
     @Id
     @Column(name = "Item_Id")
-    private Long itemId;
+    private Long item_id;
 
     @Column(name = "Discount")
     private Double discount;

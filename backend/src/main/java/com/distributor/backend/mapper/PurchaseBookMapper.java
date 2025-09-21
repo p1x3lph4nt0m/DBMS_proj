@@ -6,20 +6,20 @@ import com.distributor.backend.entity.PurchaseBook;
 public class PurchaseBookMapper {
     public static PurchaseBookDto maptoPurchaseBookDto(PurchaseBook purchaseBook){
         return new PurchaseBookDto(
-                purchaseBook.getBillNumber(),
-                purchaseBook.getOrderDay(),
-                purchaseBook.getOrderMonth(),
-                purchaseBook.getOrderYear(),
+                purchaseBook.getBill_number(),
+                purchaseBook.getOrder_day(),
+                purchaseBook.getOrder_month(),
+                purchaseBook.getOrder_year(),
                 purchaseBook.getCarrier().getLicense(),
                 purchaseBook.getProvider().getGst()
         );
     }
     public static PurchaseBook maptoPurchaseBook(PurchaseBookDto purchaseBookDto){
         return new PurchaseBook(
-                purchaseBookDto.getBillNumber(),
-                purchaseBookDto.getOrderDay(),
-                purchaseBookDto.getOrderMonth(),
-                purchaseBookDto.getOrderYear(),
+                purchaseBookDto.getBill_number(),
+                purchaseBookDto.getOrder_day(),
+                purchaseBookDto.getOrder_month(),
+                purchaseBookDto.getOrder_year(),
                 null,
                 null
         );

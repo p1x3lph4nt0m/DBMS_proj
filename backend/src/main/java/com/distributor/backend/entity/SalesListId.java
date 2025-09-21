@@ -5,14 +5,14 @@ import java.util.Objects;
 
 public class SalesListId implements Serializable {
 
-    private Long billNumber;
-    private Long itemId;
+    private Long bill_number;
+    private Long item_id;
 
     public SalesListId() {}
 
-    public SalesListId(Long billNumber, Long itemId) {
-        this.billNumber = billNumber;
-        this.itemId = itemId;
+    public SalesListId(Long bill_number, Long item_id) {
+        this.bill_number = bill_number;
+        this.item_id = item_id;
     }
 
     @Override
@@ -20,12 +20,12 @@ public class SalesListId implements Serializable {
         if (this == o) return true;
         if (!(o instanceof SalesListId)) return false;
         SalesListId that = (SalesListId) o;
-        return Objects.equals(billNumber, that.billNumber) &&
-                Objects.equals(itemId, that.itemId);
+        return Objects.equals(bill_number, that.bill_number) &&
+                Objects.equals(item_id, that.item_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(billNumber, itemId);
+        return Objects.hash(bill_number, item_id);
     }
 }

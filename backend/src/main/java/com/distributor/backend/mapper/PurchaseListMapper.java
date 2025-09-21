@@ -13,24 +13,24 @@ public class PurchaseListMapper {
     public static ItemsRepository itemsRepository;
     public static PurchaseListDto maptoPurchaseListDto(PurchaseList purchaseList){
         return new PurchaseListDto(
-                purchaseList.getBillNumber(),
-                purchaseList.getItemId(),
+                purchaseList.getBill_number(),
+                purchaseList.getItem_id(),
                 purchaseList.getDiscount(),
                 purchaseList.getQuantity()
         );
     }
     public static PurchaseList maptoPurchaseList(PurchaseListDto purchaseListDto){
-        Items items = itemsRepository.findById(purchaseListDto.getItemId())
+        Items items = itemsRepository.findById(purchaseListDto.getItem_id())
                 .orElseThrow(
-                        () -> new ResourceNotFoundException("Item does not exist with Item Id: "+purchaseListDto.getItemId())
+                        () -> new ResourceNotFoundException("Item does not exist with Item Id: "+purchaseListDto.getItem_id())
                 );
-        PurchaseBook purchaseBook = purchaseBookRepository.findById(purchaseListDto.getBillNumber())
+        PurchaseBook purchaseBook = purchaseBookRepository.findById(purchaseListDto.getBill_number())
                 .orElseThrow(
-                        () -> new ResourceNotFoundException("Purchase Book does not exist with the given Bill Number: "+ purchaseListDto.getBillNumber())
+                        () -> new ResourceNotFoundException("Purchase Book does not exist with the given Bill Number: "+ purchaseListDto.getBill_number())
                 );
         return new PurchaseList(
-                purchaseListDto.getBillNumber(),
-                purchaseListDto.getItemId(),
+                purchaseListDto.getBill_number(),
+                purchaseListDto.getItem_id(),
                 purchaseListDto.getDiscount(),
                 purchaseListDto.getQuantity(),
                 purchaseBook,
