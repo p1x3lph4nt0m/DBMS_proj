@@ -4,7 +4,7 @@ import com.distributor.backend.dto.DriverDto;
 import com.distributor.backend.entity.Driver;
 
 public class DriverMapper {
-    private static DriverDto maptoDriverDto(Driver driver){
+    public static DriverDto maptoDriverDto(Driver driver){
         return new DriverDto(
                 driver.getLicenseNumber(),
                 driver.getAadhaarNumber(),
@@ -18,7 +18,7 @@ public class DriverMapper {
         );
     }
 
-    private static Driver maptoDriver(DriverDto driverDto){
+    public static Driver maptoDriver(DriverDto driverDto){
         return new Driver(
                 driverDto.getLicenseNumber(),
                 driverDto.getAadhaarNumber(),

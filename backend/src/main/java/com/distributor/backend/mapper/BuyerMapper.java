@@ -1,12 +1,10 @@
 package com.distributor.backend.mapper;
 
 import com.distributor.backend.dto.BuyerDto;
-import com.distributor.backend.dto.SupplierDto;
 import com.distributor.backend.entity.Buyer;
-import com.distributor.backend.entity.Supplier;
 
 public class BuyerMapper {
-    private static BuyerDto maptoBuyerDto(Buyer buyer){
+    public static BuyerDto maptoBuyerDto (Buyer buyer){
         return new BuyerDto(
                 buyer.getGstNumber(),
                 buyer.getPhoneNumber(),
@@ -19,7 +17,7 @@ public class BuyerMapper {
         );
     }
 
-    private static Buyer maptoBuyer(BuyerDto buyerDto){
+    public static Buyer maptoBuyer(BuyerDto buyerDto){
         return new Buyer(
                 buyerDto.getGstNumber(),
                 buyerDto.getPhoneNumber(),
