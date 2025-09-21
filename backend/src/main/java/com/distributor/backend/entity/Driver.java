@@ -15,23 +15,23 @@ import lombok.Setter;
 
 public class Driver {
     @Id
-    @Column(name = "license_number")
-    private String licenseNumber;
+    @Column(name = "license")
+    private String license;
 
-    @Column(name = "aadhaar_number", nullable = false, unique = true)
-    private String aadhaarNumber;
+    @Column(name = "aadhaar", nullable = false, unique = true)
+    private String aadhaar;
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
+    @Column(name = "fname", nullable = false)
+    private String fname;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "lname")
+    private String lname;
 
-    @Column(name = "phone_number", nullable = false)
-    private String phoneNumber;
+    @Column(name = "phone", nullable = false)
+    private String phone;
 
-    @Column(name = "house_number")
-    private String houseNumber;
+    @Column(name = "house")
+    private String house;
 
     @Column(name = "locality")
     private String locality;
@@ -39,6 +39,6 @@ public class Driver {
     @Column(name = "city")
     private String city;
 
-    @Column(name = "zip_code")
-    private String zipCode;
+    @Column(name = "zip")
+    private String zip;
 }
