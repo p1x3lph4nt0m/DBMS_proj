@@ -14,11 +14,11 @@ import lombok.Setter;
 @Table(name = "supplier")
 public class Supplier {
     @Id
-    @Column(name = "gst_number")
-    private String gstNumber;
+    @Column(name = "gst")
+    private String gst;
 
-    @Column(name = "phone_number", nullable = false)
-    private String phoneNumber;
+    @Column(name = "phone", nullable = false)
+    private String phone;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -26,8 +26,8 @@ public class Supplier {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "building_name")
-    private String buildingName;
+    @Column(name = "building")
+    private String building;
 
     @Column(name = "area")
     private String area;
@@ -35,6 +35,6 @@ public class Supplier {
     @Column(name = "city")
     private String city;
 
-    @Column(name = "zip_code")
-    private String zipCode;
+    @Column(name = "zip")
+    private String zip;
 }
