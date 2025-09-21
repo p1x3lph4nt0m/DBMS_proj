@@ -37,6 +37,6 @@ public class LoansGiven {
 
     @Id
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "gst_number", nullable = false)
+    @JoinColumn(name = "gst", nullable = false)
     private Buyer buyer;
 }

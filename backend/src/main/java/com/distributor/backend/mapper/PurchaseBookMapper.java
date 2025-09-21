@@ -10,8 +10,8 @@ public class PurchaseBookMapper {
                 purchaseBook.getOrderDay(),
                 purchaseBook.getOrderMonth(),
                 purchaseBook.getOrderYear(),
-                purchaseBook.getCarrier().getLicenseNumber(),
-                purchaseBook.getProvider().getGstNumber()
+                purchaseBook.getCarrier().getLicense(),
+                purchaseBook.getProvider().getGst()
         );
     }
     public static PurchaseBook maptoPurchaseBook(PurchaseBookDto purchaseBookDto){

@@ -10,12 +10,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SupplierDto {
-    private String gstNumber;
-    private String phoneNumber;
+    private String gst;
+    private String phone;
     private String name;
     private String email;
-    private String buildingName;
+    private String building;
     private String area;
     private String city;
-    private String zipCode;
+    private String zip;
 }

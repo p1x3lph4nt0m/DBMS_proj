@@ -11,13 +11,13 @@ import lombok.Setter;
 @AllArgsConstructor
 
 public class DriverDto {
-    private String licenseNumber;
-    private String aadhaarNumber;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-    private String houseNumber;
+    private String license;
+    private String aadhaar;
+    private String fname;
+    private String lname;
+    private String phone;
+    private String house;
     private String locality;
     private String city;
-    private String zipCode;
+    private String zip;
 }

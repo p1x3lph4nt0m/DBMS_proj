@@ -28,10 +28,10 @@ public class PurchaseBook {
     private int orderYear;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "Carrier", referencedColumnName = "license_number")
+    @JoinColumn(name = "Carrier", referencedColumnName = "license")
     private Driver carrier;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "Provider", referencedColumnName = "gst_number")
+    @JoinColumn(name = "Provider", referencedColumnName = "gst")
     private Supplier provider;
 }

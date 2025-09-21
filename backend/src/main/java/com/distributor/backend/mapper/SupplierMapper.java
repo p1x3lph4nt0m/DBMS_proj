@@ -6,27 +6,27 @@ import com.distributor.backend.entity.Supplier;
 public class SupplierMapper {
     public static SupplierDto maptoSupplierDto(Supplier supplier){
         return new SupplierDto(
-                supplier.getGstNumber(),
-                supplier.getPhoneNumber(),
+                supplier.getGst(),
+                supplier.getPhone(),
                 supplier.getName(),
                 supplier.getEmail(),
-                supplier.getBuildingName(),
+                supplier.getBuilding(),
                 supplier.getArea(),
                 supplier.getCity(),
-                supplier.getZipCode()
+                supplier.getZip()
         );
     }
 
     public static Supplier maptoSupplier(SupplierDto supplierDto){
         return new Supplier(
-                supplierDto.getGstNumber(),
-                supplierDto.getPhoneNumber(),
+                supplierDto.getGst(),
+                supplierDto.getPhone(),
                 supplierDto.getName(),
                 supplierDto.getEmail(),
-                supplierDto.getBuildingName(),
+                supplierDto.getBuilding(),
                 supplierDto.getArea(),
                 supplierDto.getCity(),
-                supplierDto.getZipCode()
+                supplierDto.getZip()
         );
     }
 }
