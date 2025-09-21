@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/purchase-book")
@@ -14,11 +15,24 @@ public class PurchaseBookController {
 
     private final PurchaseBookService purchaseBookService;
 
-    @PostMapping
+    @PostMapping // Add or Update a purchase entry
     public ResponseEntity<PurchaseBookDto> addPurchase(@RequestBody PurchaseBookDto purchaseBookDto) {
         PurchaseBookDto savedPurchase = purchaseBookService.addPurchase(purchaseBookDto);
         return new ResponseEntity<>(savedPurchase, HttpStatus.CREATED);
     }
+
+    // Get details of a specific purchase by bill number
+    @GetMapping("/{billNumber}")
+    public ResponseEntity<?> getPurchaseByBillNumber(@PathVariable Long billNumber) {
+         PurchaseBookDto purchase = purchaseBookService.getPurchaseByBillNumber(billNumber);
+
+        if (purchase != null) {
+            return new ResponseEntity<>(purchase, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Bill number " + billNumber + " does not exist.", HttpStatus.NOT_FOUND);
+        }
+}
+
 }
 
 // {
@@ -27,5 +41,6 @@ public class PurchaseBookController {
 //   "order_month": 9,
 //   "order_year": 2025,
 //   "carrier": "DL12345",
+
 //   "provider": "GSTIN123456789"
 // }

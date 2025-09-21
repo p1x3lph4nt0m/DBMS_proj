@@ -1,5 +1,7 @@
 package com.distributor.backend.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import com.distributor.backend.dto.DriverDto;
 import com.distributor.backend.entity.Driver;
@@ -20,6 +22,14 @@ public class DriverServiceImpl implements DriverService {
         Driver driver = DriverMapper.maptoDriver(driverDto);
         Driver savedDriver = driverRepository.save(driver);
         return DriverMapper.maptoDriverDto(savedDriver);
+    }
+
+    @Override
+    public List<String> getAllDriverLicences() {
+        List<Driver> drivers = driverRepository.findAll();
+        return drivers.stream()
+                      .map(Driver::getLicense)
+                      .toList();
     }
 
 }

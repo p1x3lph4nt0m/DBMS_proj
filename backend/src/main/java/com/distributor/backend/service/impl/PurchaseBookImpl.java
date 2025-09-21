@@ -56,4 +56,12 @@ public class PurchaseBookImpl implements PurchaseBookService {
         PurchaseBook saved = purchaseBookRepository.save(purchaseBook);
         return PurchaseBookMapper.maptoPurchaseBookDto(saved);
     }
+
+    @Override
+    public PurchaseBookDto getPurchaseByBillNumber(Long billNumber) {
+        return purchaseBookRepository.findById(billNumber)
+                .map(PurchaseBookMapper::maptoPurchaseBookDto)
+                .orElse(null);
+    }
+
 }

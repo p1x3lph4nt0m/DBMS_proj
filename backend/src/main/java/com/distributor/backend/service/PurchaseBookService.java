@@ -4,4 +4,5 @@ import com.distributor.backend.dto.PurchaseBookDto;
 
 public interface PurchaseBookService {
     PurchaseBookDto addPurchase(PurchaseBookDto purchaseBookDto);
+    PurchaseBookDto getPurchaseByBillNumber(Long billNumber);
 }

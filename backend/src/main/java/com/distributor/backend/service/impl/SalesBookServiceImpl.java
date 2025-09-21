@@ -56,4 +56,11 @@ public class SalesBookServiceImpl implements SalesBookService {
         SalesBook savedSalesBook = salesBookRepository.save(salesBook);
         return SalesBookMapper.maptosalesBookDto(savedSalesBook);
     }
+
+    @Override
+    public SalesBookDto getSalesByBillNumber(Long billNumber) {
+        return salesBookRepository.findById(billNumber)
+                .map(SalesBookMapper::maptosalesBookDto)
+                .orElse(null);
+    }
 }

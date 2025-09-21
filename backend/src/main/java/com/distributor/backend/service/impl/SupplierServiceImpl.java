@@ -1,5 +1,7 @@
 package com.distributor.backend.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import com.distributor.backend.dto.SupplierDto;
 import com.distributor.backend.entity.Supplier;
@@ -19,6 +21,14 @@ public class SupplierServiceImpl implements SupplierService{
         Supplier supplier = SupplierMapper.maptoSupplier(supplierDto);
         Supplier savedSupplier= supplierRepository.save(supplier);
         return SupplierMapper.maptoSupplierDto(savedSupplier);
+    }
+
+    @Override
+    public List<String> getAllSupplierGst() {
+        return supplierRepository.findAll()
+                .stream()
+                .map(Supplier::getGst)
+                .toList();
     }
 
 }

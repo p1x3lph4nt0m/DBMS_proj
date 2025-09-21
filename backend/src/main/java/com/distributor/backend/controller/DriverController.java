@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import com.distributor.backend.dto.DriverDto;
 import com.distributor.backend.service.DriverService;
 import lombok.AllArgsConstructor;
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -18,5 +19,11 @@ public class DriverController {
         DriverDto savedDriver = driverService.addDriver(driverDto);
         return new ResponseEntity<>(savedDriver, HttpStatus.CREATED);
     }
+
+@GetMapping("/all-licences")
+public ResponseEntity<List<String>> getAllDriverLicences() {
+    List<String> licences = driverService.getAllDriverLicences();
+    return new ResponseEntity<>(licences, HttpStatus.OK);
+}
 
 }

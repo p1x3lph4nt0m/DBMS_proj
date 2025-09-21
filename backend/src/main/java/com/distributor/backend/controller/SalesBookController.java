@@ -18,6 +18,17 @@ public class SalesBookController{
         SalesBookDto savedSale = salesBookService.addSales(salesBookDto);
         return new ResponseEntity<>(savedSale, HttpStatus.CREATED);
     }
+
+    @GetMapping("/{billNumber}")
+    public ResponseEntity<?> getSalesByBillNumber(@PathVariable Long billNumber) {
+        SalesBookDto sale = salesBookService.getSalesByBillNumber(billNumber);
+
+        if (sale != null) {
+            return new ResponseEntity<>(sale, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Bill number " + billNumber + " does not exist.", HttpStatus.NOT_FOUND);
+        }
+    }
 }
 
 // {
