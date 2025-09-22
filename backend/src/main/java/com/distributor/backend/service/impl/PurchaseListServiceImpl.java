@@ -38,8 +38,22 @@ public class PurchaseListServiceImpl implements PurchaseListService{
                         "Purchase Book does not exist with Bill Number: " + purchaseListDto.getBill_number()
                 ));
         
-        // Create PurchaseList entity
-        PurchaseList purchaseList = new PurchaseList(
+        PurchaseListId id = new PurchaseListId(
+                purchaseListDto.getBill_number(),
+                purchaseListDto.getItem_id()
+        );
+
+         PurchaseList purchaseList;
+
+        if (purchaseListRepository.existsById(id)) {
+            // ✅ If entry already exists → update quantity
+            purchaseList = purchaseListRepository.findById(id).get();
+            Long oldQuantity = purchaseList.getQuantity();
+            Long newQuantity = oldQuantity + purchaseListDto.getQuantity();
+            purchaseList.setQuantity(newQuantity);
+
+        } else {
+                purchaseList = new PurchaseList(
                 purchaseListDto.getBill_number(),
                 purchaseListDto.getItem_id(),
                 purchaseListDto.getDiscount(),
@@ -47,6 +61,7 @@ public class PurchaseListServiceImpl implements PurchaseListService{
                 purchaseBook,
                 item
         );
+        }
 
         PurchaseList savedPurchaseList = purchaseListRepository.save(purchaseList);
 

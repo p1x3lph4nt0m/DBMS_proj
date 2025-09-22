@@ -40,9 +40,23 @@ public class SalesListServiceImpl implements SalesListService{
         if (item.getStock() < salesListDto.getQuantity()) {
             throw new IllegalArgumentException("Not enough stock for Item Id: " + salesListDto.getItem_id());
         }
-        
+
+        SalesListId id = new SalesListId(
+                salesListDto.getBill_number(),
+                salesListDto.getItem_id()
+        );
+
+        SalesList salesList;
+        if (salesListRepository.existsById(id)) {
+            // ✅ If entry already exists → update quantity
+            salesList = salesListRepository.findById(id).get();
+            Long oldQuantity = salesList.getQuantity();
+            Long newQuantity = oldQuantity + salesListDto.getQuantity();
+            salesList.setQuantity(newQuantity);
+
+        } else {
         // Create SalesList entity
-        SalesList salesList = new SalesList(
+                salesList = new SalesList(
                 salesListDto.getBill_number(),
                 salesListDto.getItem_id(),
                 salesListDto.getDiscount(),
@@ -50,6 +64,7 @@ public class SalesListServiceImpl implements SalesListService{
                 salesBook,
                 item
         );
+        }
 
         // Save SalesList
         SalesList savedSalesList = salesListRepository.save(salesList);
