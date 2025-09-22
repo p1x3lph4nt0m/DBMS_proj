@@ -1,7 +1,7 @@
 package com.distributor.backend.controller;
 
-import com.distributor.backend.dto.LoansTakenDto;
-import com.distributor.backend.service.LoansTakenService;
+import com.distributor.backend.dto.LoansGivenDto;
+import com.distributor.backend.service.LoansGivenService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,18 +11,18 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/loanstaken")
-public class LoansTakenController {
-    private LoansTakenService loansTakenService;
+@RequestMapping("/loansgiven")
+public class LoansGivenController {
+    private LoansGivenService loansGivenService;
     @PostMapping
-    public ResponseEntity<LoansTakenDto> addLoansTaken(@RequestBody LoansTakenDto loansTakenDto){
-        LoansTakenDto savedLoan = loansTakenService.takeLoan(loansTakenDto);
+    public ResponseEntity<LoansGivenDto> addLoansGiven(@RequestBody LoansGivenDto loansGivenDto){
+        LoansGivenDto savedLoan = loansGivenService.giveLoan(loansGivenDto);
         return new ResponseEntity<>(savedLoan, HttpStatus.CREATED);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<LoansTakenDto>> allLoansTaken(){
-        List<LoansTakenDto> allLoans = loansTakenService.allLoans();
+    public ResponseEntity<List<LoansGivenDto>> allLoansGiven(){
+        List<LoansGivenDto> allLoans = loansGivenService.allLoans();
         return new ResponseEntity<>(allLoans,HttpStatus.CREATED);
     }
 
@@ -34,7 +34,7 @@ public class LoansTakenController {
             @PathVariable("gst") String gst,
             @PathVariable("id") Long id) {
 
-        loansTakenService.deleteLoan(id, gst);
+        loansGivenService.deleteLoan(id, gst);
         return ResponseEntity.ok("Loan deleted successfully.");
         /*
          Ju n
