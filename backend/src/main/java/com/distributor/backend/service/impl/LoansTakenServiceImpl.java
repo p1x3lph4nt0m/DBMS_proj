@@ -2,6 +2,7 @@ package com.distributor.backend.service.impl;
 
 import com.distributor.backend.dto.LoansTakenDto;
 import com.distributor.backend.entity.LoansTaken;
+import com.distributor.backend.entity.LoansTakenId;
 import com.distributor.backend.entity.Supplier;
 import com.distributor.backend.exception.ResourceNotFoundException;
 import com.distributor.backend.mapper.ItemsMapper;
@@ -50,6 +51,16 @@ public class LoansTakenServiceImpl implements LoansTakenService {
                 .map(LoansTakenMapper::maptoLoansTakenDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteLoan(Long id, String gst) {
+        LoansTakenId loansTakenId = new LoansTakenId(id, gst);
+        if (!loansTakenRepository.existsById(loansTakenId)) {
+            throw new ResourceNotFoundException("Loan not found for id: " + id + " and gst: " + gst);
+        }
+        loansTakenRepository.deleteById(loansTakenId);
+    }
+
 
 
 }

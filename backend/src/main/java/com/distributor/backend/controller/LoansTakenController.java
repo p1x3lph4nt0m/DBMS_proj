@@ -25,4 +25,21 @@ public class LoansTakenController {
         List<LoansTakenDto> allLoans = loansTakenService.allLoans();
         return new ResponseEntity<>(allLoans,HttpStatus.CREATED);
     }
+
+    /*
+
+     */
+    @DeleteMapping("/del/{gst}/{id}")
+    public ResponseEntity<String> deleteLoan(
+            @PathVariable("gst") String gst,
+            @PathVariable("id") Long id) {
+
+        loansTakenService.deleteLoan(id, gst);
+        return ResponseEntity.ok("Loan deleted successfully.");
+        /*
+         Ju n
+         */
+    }
+
+
 }
