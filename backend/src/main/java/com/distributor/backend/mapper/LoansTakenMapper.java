@@ -7,8 +7,7 @@ import com.distributor.backend.exception.ResourceNotFoundException;
 import com.distributor.backend.repository.SupplierRepository;
 
 public class LoansTakenMapper {
-    private static SupplierRepository supplierRepository;
-    private static LoansTakenDto maptoLoansTakenDto(LoansTaken loansTaken){
+    public static LoansTakenDto maptoLoansTakenDto(LoansTaken loansTaken){
         return new LoansTakenDto(
                 loansTaken.getId(),
                 loansTaken.getRate(),
@@ -21,11 +20,7 @@ public class LoansTakenMapper {
                 loansTaken.getSupplier().getName()
         );
     }
-    private static LoansTaken maptoLoansTaken(LoansTakenDto loansTakenDto){
-        Supplier supplier = supplierRepository.findById(loansTakenDto.getGstNumber())
-                .orElseThrow(
-                        () -> new ResourceNotFoundException("Supplier does not exist with the gst number: "+ loansTakenDto.getGstNumber())
-                );
+    public static LoansTaken maptoLoansTaken(LoansTakenDto loansTakenDto, Supplier supplier){
         return new LoansTaken(
                 loansTakenDto.getId(),
                 loansTakenDto.getRate(),
