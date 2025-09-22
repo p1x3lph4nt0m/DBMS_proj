@@ -8,27 +8,35 @@ import com.distributor.backend.mapper.LoansTakenMapper;
 import com.distributor.backend.repository.LoansTakenRepository;
 import com.distributor.backend.repository.SupplierRepository;
 import com.distributor.backend.service.LoansTakenService;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
 public class LoansTakenServiceImpl implements LoansTakenService {
-    private LoansTakenRepository loansTakenRepository;
-    private static SupplierRepository supplierRepository;
-    @Autowired
-    public LoansTakenServiceImpl(SupplierRepository supplierRepository) {
-        LoansTakenServiceImpl.supplierRepository = supplierRepository;
+
+    private final LoansTakenRepository loansTakenRepository;
+    private final SupplierRepository supplierRepository;
+
+    public LoansTakenServiceImpl(LoansTakenRepository loansTakenRepository,
+                                 SupplierRepository supplierRepository) {
+        this.loansTakenRepository = loansTakenRepository;
+        this.supplierRepository = supplierRepository;
     }
+
     @Override
     public LoansTakenDto takeLoan(LoansTakenDto loansTakenDto) {
         Supplier supplier = supplierRepository.findById(loansTakenDto.getGstNumber())
-                .orElseThrow(
-                        () -> new ResourceNotFoundException("Supplier does not exist with the gst number: "+ loansTakenDto.getGstNumber())
-                );
-        LoansTaken taken = LoansTakenMapper.maptoLoansTaken(loansTakenDto, supplier);
-        LoansTaken savedLoanTaken = loansTakenRepository.save(taken);
-        return LoansTakenMapper.maptoLoansTakenDto(savedLoanTaken);
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Supplier does not exist with gst: " + loansTakenDto.getGstNumber()
+                ));
+
+        Long maxId = loansTakenRepository.findMaxIdBySupplier(supplier.getGst());
+        Long nextId = (maxId == null) ? 1L : maxId + 1;
+
+        LoansTaken loan = LoansTakenMapper.maptoLoansTaken(loansTakenDto, supplier);
+        loan.setId(nextId);
+
+        LoansTaken savedLoan = loansTakenRepository.save(loan);
+        return LoansTakenMapper.maptoLoansTakenDto(savedLoan);
     }
+
 }
