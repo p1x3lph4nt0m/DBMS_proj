@@ -19,5 +19,4 @@ public class LoansGivenDto {
     private Integer year;
     private Integer duration;
     private String gstNumber;
-    private String Name;
 }

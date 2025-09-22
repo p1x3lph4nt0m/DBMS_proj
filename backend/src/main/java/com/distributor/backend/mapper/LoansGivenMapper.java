@@ -18,8 +18,7 @@ public class LoansGivenMapper {
                 loansGiven.getMonth(),
                 loansGiven.getYear(),
                 loansGiven.getDuration(),
-                loansGiven.getBuyer().getGst(),
-                loansGiven.getBuyer().getName()
+                loansGiven.getBuyer().getGst()
         );
     }
     private static LoansGiven maptoLoansGiven(LoansGivenDto loansGivenDto){
