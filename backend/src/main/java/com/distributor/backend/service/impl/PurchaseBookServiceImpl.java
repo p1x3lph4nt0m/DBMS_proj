@@ -1,5 +1,7 @@
 package com.distributor.backend.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 
@@ -16,7 +18,7 @@ import com.distributor.backend.service.PurchaseBookService;
 
 @Service
 @AllArgsConstructor
-public class PurchaseBookImpl implements PurchaseBookService {
+public class PurchaseBookServiceImpl implements PurchaseBookService {
 
     private final PurchaseBookRepository purchaseBookRepository;
     private final DriverRepository driverRepository;
@@ -62,6 +64,14 @@ public class PurchaseBookImpl implements PurchaseBookService {
         return purchaseBookRepository.findById(billNumber)
                 .map(PurchaseBookMapper::maptoPurchaseBookDto)
                 .orElse(null);
+    }
+
+    @Override
+    public List<PurchaseBookDto> getPurchasesByDateRangeAndGstPrefix(String startDate, String endDate, String gstPrefix) {
+        List<PurchaseBook> purchases = purchaseBookRepository.findInDateRangeWithGstNative(startDate, endDate, gstPrefix);
+        return purchases.stream()
+                .map(PurchaseBookMapper::maptoPurchaseBookDto)
+                .toList();
     }
 
 }

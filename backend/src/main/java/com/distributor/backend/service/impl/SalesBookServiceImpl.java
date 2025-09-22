@@ -1,5 +1,7 @@
 package com.distributor.backend.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 
@@ -63,4 +65,14 @@ public class SalesBookServiceImpl implements SalesBookService {
                 .map(SalesBookMapper::maptosalesBookDto)
                 .orElse(null);
     }
+
+    @Override
+    public List<SalesBookDto> getSalesByDateRangeAndGstPrefix(String startDate, String endDate, String gstPrefix) {
+        List<SalesBook> sales = salesBookRepository.findInDateRangeWithGstNative(startDate, endDate, gstPrefix);
+        return sales.stream()
+                .map(SalesBookMapper::maptosalesBookDto)
+                .toList();
+    }
+
+    
 }

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -31,8 +32,18 @@ public class PurchaseBookController {
         } else {
             return new ResponseEntity<>("Bill number " + billNumber + " does not exist.", HttpStatus.NOT_FOUND);
         }
-}
+    }
 
+    @GetMapping("/search") // Get all purchase entries
+    public ResponseEntity<List<PurchaseBookDto>> getPurchasesByDateRangeAndGstPrefix(
+            @RequestParam String start_date,
+            @RequestParam String end_date,
+            @RequestParam String gst) {
+        List<PurchaseBookDto> purchases = purchaseBookService.getPurchasesByDateRangeAndGstPrefix(start_date, end_date, gst);
+        return new ResponseEntity<>(purchases, HttpStatus.OK);
+    }
+
+    // http://localhost:8080/purchase-book/search?start_date=2025-09-01&end_date=2025-09-21&gst=GSTIN
 }
 
 // {

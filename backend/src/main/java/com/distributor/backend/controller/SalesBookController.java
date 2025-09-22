@@ -1,10 +1,15 @@
 package com.distributor.backend.controller;
 
+import com.distributor.backend.dto.PurchaseBookDto;
 import com.distributor.backend.dto.SalesBookDto;
 import com.distributor.backend.service.SalesBookService;
 import lombok.AllArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import com.distributor.backend.entity.SalesBook;
 import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
@@ -29,6 +34,17 @@ public class SalesBookController{
             return new ResponseEntity<>("Bill number " + billNumber + " does not exist.", HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/search") 
+    public ResponseEntity<List<SalesBookDto>> getSalesByDateRangeAndGstPrefix(
+            @RequestParam String start_date,
+            @RequestParam String end_date,
+            @RequestParam String gst) {
+        List<SalesBookDto> sales = salesBookService.getSalesByDateRangeAndGstPrefix(start_date, end_date, gst);
+        return new ResponseEntity<>(sales, HttpStatus.OK);
+    }
+
+    // http://localhost:8080/sales-book/search?start_date=2025-09-01&end_date=2025-09-21&gst=GSTBUY
 }
 
 // {
