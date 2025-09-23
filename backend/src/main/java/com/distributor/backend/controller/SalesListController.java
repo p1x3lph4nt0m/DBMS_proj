@@ -2,17 +2,15 @@ package com.distributor.backend.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.distributor.backend.dto.SalesListDto;
 import com.distributor.backend.service.SalesListService;
 
 import lombok.AllArgsConstructor;
+
+import java.util.Collections;
+import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -31,6 +29,19 @@ public class SalesListController {
     public ResponseEntity<String> deleteSalesList(@PathVariable Long billNumber, @PathVariable Long itemId) {
         salesListService.deleteSalesList(billNumber, itemId);
         return new ResponseEntity<>("SalesList entry deleted successfully", HttpStatus.OK);
+    }
+
+    @GetMapping("/all/{billNumber}")
+    public ResponseEntity<List<Object[]>> findByBillNumber(@PathVariable Long billNumber) {
+        if (billNumber == null) {
+            return ResponseEntity.badRequest().body(Collections.emptyList());
+        }
+
+        List<Object[]> rows = salesListService.findByBillNumber(billNumber);
+        if (rows == null || rows.isEmpty()) {
+            return ResponseEntity.ok(Collections.emptyList());
+        }
+        return ResponseEntity.ok(rows);
     }
 }
 /*POST /purchaselist/add

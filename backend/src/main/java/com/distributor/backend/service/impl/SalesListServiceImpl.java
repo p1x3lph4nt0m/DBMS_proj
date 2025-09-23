@@ -16,6 +16,9 @@ import com.distributor.backend.service.SalesListService;
 
 import lombok.AllArgsConstructor;
 
+import java.util.Collections;
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class SalesListServiceImpl implements SalesListService{
@@ -94,4 +97,9 @@ public class SalesListServiceImpl implements SalesListService{
         salesListRepository.delete(salesList);
     }
 
+    @Override
+    public List<Object[]> findByBillNumber(Long billNumber) {
+        List<Object[]> rows = salesListRepository.findByBillNumber(billNumber);
+        return rows == null ? Collections.emptyList() : rows;
+    }
 }
