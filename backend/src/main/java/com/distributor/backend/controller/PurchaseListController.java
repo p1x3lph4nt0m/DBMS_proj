@@ -1,8 +1,12 @@
 package com.distributor.backend.controller;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +36,19 @@ public class PurchaseListController {
         purchaseListService.deletePurchaseList(billNumber, itemId);
         return new ResponseEntity<>("PurchaseList entry deleted successfully", HttpStatus.OK);
     }
+
+    @GetMapping("/all/{billNumber}")
+    public ResponseEntity<List<Object[]>> findByBillNumber(@PathVariable Long billNumber) {
+      if (billNumber == null) {
+        return ResponseEntity.badRequest().body(Collections.emptyList());
+      }
+
+      List<Object[]> rows = purchaseListService.findByBillNumber(billNumber);
+      if (rows == null || rows.isEmpty()) {
+        return ResponseEntity.ok(Collections.emptyList());
+      }
+      return ResponseEntity.ok(rows);
+    }    
 }
 
 /*POST /purchaselist/add

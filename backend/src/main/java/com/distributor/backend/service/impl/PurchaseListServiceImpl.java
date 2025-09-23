@@ -1,5 +1,8 @@
 package com.distributor.backend.service.impl;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.distributor.backend.dto.PurchaseListDto;
@@ -88,4 +91,11 @@ public class PurchaseListServiceImpl implements PurchaseListService{
         // Delete entry
         purchaseListRepository.delete(purchaseList);
     }
+
+        @Override
+        public List<Object[]> findByBillNumber(Long billNumber) {
+        List<Object[]> rows = purchaseListRepository.findByBillNumber(billNumber);
+        return rows == null ? Collections.emptyList() : rows;
+        }
+
 }
