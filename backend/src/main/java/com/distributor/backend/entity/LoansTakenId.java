@@ -11,7 +11,7 @@ public class LoansTakenId implements Serializable {
 
     public LoansTakenId(Long Id, String supplier){
         this.Id = Id;
-        // this.supplier = supplier;
+        this.supplier = supplier;
     }
 
     @Override

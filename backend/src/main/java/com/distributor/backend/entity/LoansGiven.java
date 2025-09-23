@@ -36,7 +36,7 @@ public class LoansGiven {
     private Integer duration;
 
     @Id
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "gst", nullable = false)
     private Buyer buyer;
 }
