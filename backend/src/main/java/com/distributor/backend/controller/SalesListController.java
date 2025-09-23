@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping
+@RequestMapping("/saleslist")
 public class SalesListController {
 
     private SalesListService salesListService;
