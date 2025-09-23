@@ -1,6 +1,12 @@
 package com.distributor.backend.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,12 +36,12 @@ public class PurchaseList {
     private Long quantity;
 
     // Foreign key to PurchaseBook
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "Bill_Number", insertable = false, updatable = false)
     private PurchaseBook purchaseBook;
 
     // Foreign key to Items
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "Item_Id", insertable = false, updatable = false)
     private Items item;
 }

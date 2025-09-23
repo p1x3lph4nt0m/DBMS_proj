@@ -29,11 +29,11 @@ public class SalesList {
     @Column(name = "Quantity")
     private Long quantity;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "Bill_Number", insertable = false, updatable = false )
     private SalesBook salesBook;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "Item_Id", insertable = false, updatable = false)
     private Items item;
 }
