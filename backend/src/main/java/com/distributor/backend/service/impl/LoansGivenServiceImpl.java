@@ -5,7 +5,6 @@ import com.distributor.backend.entity.LoansGiven;
 import com.distributor.backend.entity.LoansGivenId;
 import com.distributor.backend.entity.Buyer;
 import com.distributor.backend.exception.ResourceNotFoundException;
-import com.distributor.backend.mapper.ItemsMapper;
 import com.distributor.backend.mapper.LoansGivenMapper;
 import com.distributor.backend.repository.LoansGivenRepository;
 import com.distributor.backend.repository.BuyerRepository;
@@ -60,7 +59,5 @@ public class LoansGivenServiceImpl implements LoansGivenService {
         }
         loansGivenRepository.deleteById(loansGivenId);
     }
-
-
 
 }

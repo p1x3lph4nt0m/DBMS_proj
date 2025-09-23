@@ -1,6 +1,5 @@
 package com.distributor.backend.controller;
 
-import com.distributor.backend.dto.PurchaseBookDto;
 import com.distributor.backend.dto.SalesBookDto;
 import com.distributor.backend.service.SalesBookService;
 import lombok.AllArgsConstructor;
@@ -9,7 +8,6 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import com.distributor.backend.entity.SalesBook;
 import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor

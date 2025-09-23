@@ -18,7 +18,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "PurchaseList")
-@IdClass(PurchaseListId.class) // Composite Key Class
+@IdClass(PurchaseListId.class)
 public class PurchaseList {
 
     @Id

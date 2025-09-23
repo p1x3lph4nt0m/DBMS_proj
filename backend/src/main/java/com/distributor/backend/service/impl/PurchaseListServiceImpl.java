@@ -49,7 +49,6 @@ public class PurchaseListServiceImpl implements PurchaseListService{
          PurchaseList purchaseList;
 
         if (purchaseListRepository.existsById(id)) {
-            // ✅ If entry already exists → update quantity
             purchaseList = purchaseListRepository.findById(id).get();
             Long oldQuantity = purchaseList.getQuantity();
             Long newQuantity = oldQuantity + purchaseListDto.getQuantity();

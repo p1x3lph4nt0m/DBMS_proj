@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "SalesList")
-@IdClass(SalesListId.class) // Composite Key Class
+@IdClass(SalesListId.class)
 public class SalesList {
 
     @Id

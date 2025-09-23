@@ -5,7 +5,6 @@ import com.distributor.backend.entity.LoansTaken;
 import com.distributor.backend.entity.LoansTakenId;
 import com.distributor.backend.entity.Supplier;
 import com.distributor.backend.exception.ResourceNotFoundException;
-import com.distributor.backend.mapper.ItemsMapper;
 import com.distributor.backend.mapper.LoansTakenMapper;
 import com.distributor.backend.repository.LoansTakenRepository;
 import com.distributor.backend.repository.SupplierRepository;

@@ -51,7 +51,6 @@ public class SalesListServiceImpl implements SalesListService{
 
         SalesList salesList;
         if (salesListRepository.existsById(id)) {
-            // ✅ If entry already exists → update quantity
             salesList = salesListRepository.findById(id).get();
             Long oldQuantity = salesList.getQuantity();
             Long newQuantity = oldQuantity + salesListDto.getQuantity();

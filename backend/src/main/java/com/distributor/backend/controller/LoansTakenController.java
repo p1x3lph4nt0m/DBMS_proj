@@ -26,9 +26,6 @@ public class LoansTakenController {
         return new ResponseEntity<>(allLoans,HttpStatus.CREATED);
     }
 
-    /*
-
-     */
     @DeleteMapping("/del/{gst}/{id}")
     public ResponseEntity<String> deleteLoan(
             @PathVariable("gst") String gst,
@@ -36,10 +33,5 @@ public class LoansTakenController {
 
         loansTakenService.deleteLoan(id, gst);
         return ResponseEntity.ok("Loan deleted successfully.");
-        /*
-         Ju n
-         */
     }
-
-
 }
