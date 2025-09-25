@@ -12,14 +12,13 @@ public class LoansGivenId implements Serializable {
     public LoansGivenId(Long Id, String buyer){
         this.Id = Id;
         this.buyer = buyer;
-    }
+        }
 
     @Override
     public boolean equals(Object o){
         if(this == o) return true;
         if(!(o instanceof LoansGivenId that)) return false;
-        return Objects.equals(Id,that.Id) &&
-                Objects.equals(buyer,that.buyer);
+        return Objects.equals(Id,that.Id) && Objects.equals(buyer,that.buyer);
     }
 
     @Override

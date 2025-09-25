@@ -26,34 +26,29 @@ public class PurchaseBookServiceImpl implements PurchaseBookService {
 
     @Override
     public PurchaseBookDto addPurchase(PurchaseBookDto purchaseBookDto) {
-        // Fetch related Driver
         Driver carrier = driverRepository.findById(purchaseBookDto.getCarrier())
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Driver not found with license number: " + purchaseBookDto.getCarrier()));
+            .orElseThrow(() -> new ResourceNotFoundException(
+                "Driver not found with license number: " + purchaseBookDto.getCarrier()));
 
-        // Fetch related Supplier
         Supplier provider = supplierRepository.findById(purchaseBookDto.getProvider())
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Supplier not found with GST Number: " + purchaseBookDto.getProvider()));
+            .orElseThrow(() -> new ResourceNotFoundException(
+                "Supplier not found with GST Number: " + purchaseBookDto.getProvider()));
 
-        // Check if PurchaseBook with this bill_number already exists
         PurchaseBook purchaseBook = purchaseBookRepository.findById(purchaseBookDto.getBill_number())
-                .map(existing -> {
-                    // Update existing entry
-                    existing.setOrder_day(purchaseBookDto.getOrder_day());
-                    existing.setOrder_month(purchaseBookDto.getOrder_month());
-                    existing.setOrder_year(purchaseBookDto.getOrder_year());
-                    existing.setCarrier(carrier);
-                    existing.setProvider(provider);
-                    return existing;
-                })
-                .orElseGet(() -> {
-                    // Create new entry
-                    PurchaseBook newBook = PurchaseBookMapper.maptoPurchaseBook(purchaseBookDto);
-                    newBook.setCarrier(carrier);
-                    newBook.setProvider(provider);
-                    return newBook;
-                });
+            .map(existing -> {
+                existing.setOrder_day(purchaseBookDto.getOrder_day());
+                existing.setOrder_month(purchaseBookDto.getOrder_month());
+                existing.setOrder_year(purchaseBookDto.getOrder_year());
+                existing.setCarrier(carrier);
+                existing.setProvider(provider);
+                return existing;
+            })
+            .orElseGet(() -> {
+                PurchaseBook newBook = PurchaseBookMapper.maptoPurchaseBook(purchaseBookDto);
+                newBook.setCarrier(carrier);
+                newBook.setProvider(provider);
+                return newBook;
+            });
 
         PurchaseBook saved = purchaseBookRepository.save(purchaseBook);
         return PurchaseBookMapper.maptoPurchaseBookDto(saved);
@@ -62,16 +57,16 @@ public class PurchaseBookServiceImpl implements PurchaseBookService {
     @Override
     public PurchaseBookDto getPurchaseByBillNumber(Long billNumber) {
         return purchaseBookRepository.findById(billNumber)
-                .map(PurchaseBookMapper::maptoPurchaseBookDto)
-                .orElse(null);
+            .map(PurchaseBookMapper::maptoPurchaseBookDto)
+            .orElse(null);
     }
 
     @Override
     public List<PurchaseBookDto> getPurchasesByDateRangeAndGstPrefix(String startDate, String endDate, String gstPrefix) {
         List<PurchaseBook> purchases = purchaseBookRepository.findInDateRangeWithGstNative(startDate, endDate, gstPrefix);
         return purchases.stream()
-                .map(PurchaseBookMapper::maptoPurchaseBookDto)
-                .toList();
+            .map(PurchaseBookMapper::maptoPurchaseBookDto)
+            .toList();
     }
 
 }

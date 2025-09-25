@@ -27,8 +27,8 @@ public class ItemsServiceImpl implements ItemsService {
     @Override
     public List<ItemsDto> getAllItems() {
         return itemsRepository.findAll()
-                .stream()
-                .map(ItemsMapper::maptoItemsDto)
-                .collect(Collectors.toList());
+            .stream()
+            .map(ItemsMapper::maptoItemsDto)
+            .collect(Collectors.toList());
     }
 }

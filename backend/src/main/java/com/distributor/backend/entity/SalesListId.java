@@ -8,7 +8,8 @@ public class SalesListId implements Serializable {
     private Long bill_number;
     private Long item_id;
 
-    public SalesListId() {}
+    public SalesListId() {
+    }
 
     public SalesListId(Long bill_number, Long item_id) {
         this.bill_number = bill_number;
@@ -17,11 +18,12 @@ public class SalesListId implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof SalesListId)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof SalesListId))
+            return false;
         SalesListId that = (SalesListId) o;
-        return Objects.equals(bill_number, that.bill_number) &&
-                Objects.equals(item_id, that.item_id);
+        return Objects.equals(bill_number, that.bill_number) && Objects.equals(item_id, that.item_id);
     }
 
     @Override

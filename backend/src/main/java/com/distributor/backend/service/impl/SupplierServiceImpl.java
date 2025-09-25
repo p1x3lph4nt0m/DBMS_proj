@@ -26,9 +26,9 @@ public class SupplierServiceImpl implements SupplierService{
     @Override
     public List<String> getAllSupplierGst() {
         return supplierRepository.findAll()
-                .stream()
-                .map(Supplier::getGst)
-                .toList();
+            .stream()
+            .map(Supplier::getGst)
+            .toList();
     }
 
 }

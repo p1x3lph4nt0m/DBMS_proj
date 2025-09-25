@@ -35,12 +35,10 @@ public class PurchaseList {
     @Column(name = "Quantity")
     private Long quantity;
 
-    // Foreign key to PurchaseBook
     @ManyToOne
     @JoinColumn(name = "Bill_Number", insertable = false, updatable = false)
     private PurchaseBook purchaseBook;
 
-    // Foreign key to Items
     @ManyToOne
     @JoinColumn(name = "Item_Id", insertable = false, updatable = false)
     private Items item;

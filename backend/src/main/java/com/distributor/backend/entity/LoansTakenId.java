@@ -18,8 +18,7 @@ public class LoansTakenId implements Serializable {
     public boolean equals(Object o){
         if(this == o) return true;
         if(!(o instanceof LoansTakenId that)) return false;
-        return Objects.equals(Id,that.Id) &&
-                Objects.equals(supplier,that.supplier);
+        return Objects.equals(Id,that.Id) && Objects.equals(supplier,that.supplier);
     }
 
     @Override

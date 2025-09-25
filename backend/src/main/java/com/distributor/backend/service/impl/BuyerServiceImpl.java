@@ -26,8 +26,8 @@ public class BuyerServiceImpl implements BuyerService {
     @Override
     public List<String> getAllBuyerGst() {
         return buyerRepository.findAll()
-                .stream()
-                .map(Buyer::getGst)
-                .toList();
+            .stream()
+            .map(Buyer::getGst)
+            .toList();
     }
 }

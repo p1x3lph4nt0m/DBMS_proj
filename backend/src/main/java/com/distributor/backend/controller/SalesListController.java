@@ -44,25 +44,3 @@ public class SalesListController {
         return ResponseEntity.ok(rows);
     }
 }
-/*POST /purchaselist/add
-Content-Type: application/json
-
-{
-  "bill_number": 101,
-  "item_id": 5,
-  "discount": 5.0,
-  "quantity": 10
-}
-{
-  "bill_number": 101,
-  "item_id": 5,
-  "discount": 5.0,
-  "quantity": 5
-}
-{
-  "bill_number": 11,
-  "item_id": 2,
-  "discount": 5.0,
-  "quantity": 1000
-}  
-*/

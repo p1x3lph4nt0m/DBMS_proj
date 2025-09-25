@@ -1,6 +1,4 @@
 package com.distributor.backend.dto;
-
-import com.distributor.backend.entity.Buyer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

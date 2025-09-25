@@ -16,13 +16,12 @@ public class PurchaseBookController {
 
     private final PurchaseBookService purchaseBookService;
 
-    @PostMapping // Add or Update a purchase entry
+    @PostMapping
     public ResponseEntity<PurchaseBookDto> addPurchase(@RequestBody PurchaseBookDto purchaseBookDto) {
         PurchaseBookDto savedPurchase = purchaseBookService.addPurchase(purchaseBookDto);
         return new ResponseEntity<>(savedPurchase, HttpStatus.CREATED);
     }
 
-    // Get details of a specific purchase by bill number
     @GetMapping("/{billNumber}")
     public ResponseEntity<?> getPurchaseByBillNumber(@PathVariable Long billNumber) {
          PurchaseBookDto purchase = purchaseBookService.getPurchaseByBillNumber(billNumber);
@@ -34,7 +33,7 @@ public class PurchaseBookController {
         }
     }
 
-    @GetMapping("/search") // Get all purchase entries
+    @GetMapping("/search")
     public ResponseEntity<List<PurchaseBookDto>> getPurchasesByDateRangeAndGstPrefix(
             @RequestParam String start_date,
             @RequestParam String end_date,
@@ -43,15 +42,5 @@ public class PurchaseBookController {
         return new ResponseEntity<>(purchases, HttpStatus.OK);
     }
 
-    // http://localhost:8080/purchase-book/search?start_date=2025-09-01&end_date=2025-09-21&gst=GSTIN
 }
 
-// {
-//   "bill_number": 1001,
-//   "order_day": 21,
-//   "order_month": 9,
-//   "order_year": 2025,
-//   "carrier": "DL12345",
-
-//   "provider": "GSTIN123456789"
-// }

@@ -20,10 +20,10 @@ public class DriverController {
         return new ResponseEntity<>(savedDriver, HttpStatus.CREATED);
     }
 
-@GetMapping("/all-licences")
-public ResponseEntity<List<String>> getAllDriverLicences() {
-    List<String> licences = driverService.getAllDriverLicences();
-    return new ResponseEntity<>(licences, HttpStatus.OK);
-}
+    @GetMapping("/all-licences")
+    public ResponseEntity<List<String>> getAllDriverLicences() {
+        List<String> licences = driverService.getAllDriverLicences();
+        return new ResponseEntity<>(licences, HttpStatus.OK);
+    }
 
 }

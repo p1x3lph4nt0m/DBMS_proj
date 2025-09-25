@@ -20,8 +20,7 @@ public class PurchaseListId implements Serializable {
         if (this == o) return true;
         if (!(o instanceof PurchaseListId)) return false;
         PurchaseListId that = (PurchaseListId) o;
-        return Objects.equals(bill_number, that.bill_number) &&
-               Objects.equals(item_id, that.item_id);
+        return Objects.equals(bill_number, that.bill_number) && Objects.equals(item_id, that.item_id);
     }
 
     @Override

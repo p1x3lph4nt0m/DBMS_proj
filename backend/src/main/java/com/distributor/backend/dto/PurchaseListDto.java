@@ -10,12 +10,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PurchaseListDto {
-
     private Long bill_number;
-
     private Long item_id;
-
     private Double discount;
-
     private Long quantity;
 }

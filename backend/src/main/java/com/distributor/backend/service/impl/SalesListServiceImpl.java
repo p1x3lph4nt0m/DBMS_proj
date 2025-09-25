@@ -31,22 +31,20 @@ public class SalesListServiceImpl implements SalesListService{
     public SalesListDto addSalesList(SalesListDto salesListDto) {
         
         Items item = itemsRepository.findById(salesListDto.getItem_id())
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Item does not exist with Item Id: " + salesListDto.getItem_id()
-                ));
-        // Validate SalesBook
+            .orElseThrow(() -> new ResourceNotFoundException(
+                "Item does not exist with Item Id: " + salesListDto.getItem_id()
+            ));
         SalesBook salesBook = salesBookRepository.findById(salesListDto.getBill_number())
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Sales Book does not exist with Bill Number: " + salesListDto.getBill_number()
-                ));
-        // Check available stock
+            .orElseThrow(() -> new ResourceNotFoundException(
+                "Sales Book does not exist with Bill Number: " + salesListDto.getBill_number()
+            ));
         if (item.getStock() < salesListDto.getQuantity()) {
             throw new IllegalArgumentException("Not enough stock for Item Id: " + salesListDto.getItem_id());
         }
 
         SalesListId id = new SalesListId(
-                salesListDto.getBill_number(),
-                salesListDto.getItem_id()
+            salesListDto.getBill_number(),
+            salesListDto.getItem_id()
         );
 
         SalesList salesList;
@@ -57,21 +55,18 @@ public class SalesListServiceImpl implements SalesListService{
             salesList.setQuantity(newQuantity);
 
         } else {
-        // Create SalesList entity
-                salesList = new SalesList(
-                salesListDto.getBill_number(),
-                salesListDto.getItem_id(),
-                salesListDto.getDiscount(),
-                salesListDto.getQuantity(),
-                salesBook,
-                item
+            salesList = new SalesList(
+            salesListDto.getBill_number(),
+            salesListDto.getItem_id(),
+            salesListDto.getDiscount(),
+            salesListDto.getQuantity(),
+            salesBook,
+            item
         );
         }
 
-        // Save SalesList
         SalesList savedSalesList = salesListRepository.save(salesList);
 
-        // Update stock quantity (decrease)
         item.setStock(item.getStock() - salesListDto.getQuantity());
         itemsRepository.save(item);
 
@@ -83,16 +78,14 @@ public class SalesListServiceImpl implements SalesListService{
         SalesListId id = new SalesListId(billNumber, itemId);
 
         SalesList salesList = salesListRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "SalesList entry not found for Bill: " + billNumber + " and Item: " + itemId
-                ));
+            .orElseThrow(() -> new ResourceNotFoundException(
+                "SalesList entry not found for Bill: " + billNumber + " and Item: " + itemId
+            ));
 
-        // Reverse stock (add back)
         Items item = salesList.getItem();
         item.setStock(item.getStock() + salesList.getQuantity());
         itemsRepository.save(item);
 
-        // Delete entry
         salesListRepository.delete(salesList);
     }
 

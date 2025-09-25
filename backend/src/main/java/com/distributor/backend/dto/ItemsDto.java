@@ -15,7 +15,8 @@ public class ItemsDto {
     private Double tax;
     private String company;
     private Long stock;
-    private Double price;
+    private Double c_price;
+    private Double s_price;
     private Double mrp;
     private String weight;
 }

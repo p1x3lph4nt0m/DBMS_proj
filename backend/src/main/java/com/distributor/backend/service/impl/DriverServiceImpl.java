@@ -28,8 +28,8 @@ public class DriverServiceImpl implements DriverService {
     public List<String> getAllDriverLicences() {
         List<Driver> drivers = driverRepository.findAll();
         return drivers.stream()
-                      .map(Driver::getLicense)
-                      .toList();
+            .map(Driver::getLicense)
+            .toList();
     }
 
 }

@@ -29,21 +29,19 @@ public class PurchaseListServiceImpl implements PurchaseListService{
 
     @Override
     public PurchaseListDto addPurchaseList(PurchaseListDto purchaseListDto) {
-        // Validate Item
         Items item = itemsRepository.findById(purchaseListDto.getItem_id())
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Item does not exist with Item Id: " + purchaseListDto.getItem_id()
-                ));
+            .orElseThrow(() -> new ResourceNotFoundException(
+                "Item does not exist with Item Id: " + purchaseListDto.getItem_id()
+            ));
 
-        // Validate PurchaseBook
         PurchaseBook purchaseBook = purchaseBookRepository.findById(purchaseListDto.getBill_number())
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Purchase Book does not exist with Bill Number: " + purchaseListDto.getBill_number()
-                ));
+            .orElseThrow(() -> new ResourceNotFoundException(
+                "Purchase Book does not exist with Bill Number: " + purchaseListDto.getBill_number()
+            ));
         
         PurchaseListId id = new PurchaseListId(
-                purchaseListDto.getBill_number(),
-                purchaseListDto.getItem_id()
+            purchaseListDto.getBill_number(),
+            purchaseListDto.getItem_id()
         );
 
          PurchaseList purchaseList;
@@ -55,19 +53,18 @@ public class PurchaseListServiceImpl implements PurchaseListService{
             purchaseList.setQuantity(newQuantity);
 
         } else {
-                purchaseList = new PurchaseList(
-                purchaseListDto.getBill_number(),
-                purchaseListDto.getItem_id(),
-                purchaseListDto.getDiscount(),
-                purchaseListDto.getQuantity(),
-                purchaseBook,
-                item
+            purchaseList = new PurchaseList(
+            purchaseListDto.getBill_number(),
+            purchaseListDto.getItem_id(),
+            purchaseListDto.getDiscount(),
+            purchaseListDto.getQuantity(),
+            purchaseBook,
+            item
         );
         }
 
         PurchaseList savedPurchaseList = purchaseListRepository.save(purchaseList);
 
-        // Update stock quantity
         item.setStock(item.getStock() + purchaseListDto.getQuantity());
         itemsRepository.save(item);
         return PurchaseListMapper.maptoPurchaseListDto(savedPurchaseList);
@@ -78,16 +75,14 @@ public class PurchaseListServiceImpl implements PurchaseListService{
         PurchaseListId id = new PurchaseListId(billNumber, itemId);
 
         PurchaseList purchaseList = purchaseListRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "PurchaseList entry not found for Bill: " + billNumber + " and Item: " + itemId
-                ));
+            .orElseThrow(() -> new ResourceNotFoundException(
+                "PurchaseList entry not found for Bill: " + billNumber + " and Item: " + itemId
+            ));
 
-        // Decrease stock (reverse the purchase effect)
         Items item = purchaseList.getItem();
         item.setStock(item.getStock() - purchaseList.getQuantity());
         itemsRepository.save(item);
 
-        // Delete entry
         purchaseListRepository.delete(purchaseList);
     }
 

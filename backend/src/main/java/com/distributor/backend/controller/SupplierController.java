@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/suppliers")
 public class SupplierController {
 
-     private SupplierService supplierService;
+    private SupplierService supplierService;
 
     @PostMapping
     public ResponseEntity<SupplierDto> addSupplier(@RequestBody SupplierDto supplierDto) {

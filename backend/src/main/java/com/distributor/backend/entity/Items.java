@@ -30,8 +30,11 @@ public class Items {
     @Column(name = "Available_Quantity")
     private Long stock;
 
+    @Column(name = "Cost_Price")
+    private Double c_price;
+
     @Column(name = "Selling_Price")
-    private Double price;
+    private Double s_price;
 
     @Column(name = "Max_Retail_Price")
     private Double mrp;

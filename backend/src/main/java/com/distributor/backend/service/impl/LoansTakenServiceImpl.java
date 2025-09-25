@@ -20,8 +20,7 @@ public class LoansTakenServiceImpl implements LoansTakenService {
     private final LoansTakenRepository loansTakenRepository;
     private final SupplierRepository supplierRepository;
 
-    public LoansTakenServiceImpl(LoansTakenRepository loansTakenRepository,
-                                 SupplierRepository supplierRepository) {
+    public LoansTakenServiceImpl(LoansTakenRepository loansTakenRepository, SupplierRepository supplierRepository) {
         this.loansTakenRepository = loansTakenRepository;
         this.supplierRepository = supplierRepository;
     }
@@ -29,9 +28,9 @@ public class LoansTakenServiceImpl implements LoansTakenService {
     @Override
     public LoansTakenDto takeLoan(LoansTakenDto loansTakenDto) {
         Supplier supplier = supplierRepository.findById(loansTakenDto.getGstNumber())
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Supplier does not exist with gst: " + loansTakenDto.getGstNumber()
-                ));
+            .orElseThrow(() -> new ResourceNotFoundException(
+                "Supplier does not exist with gst: " + loansTakenDto.getGstNumber()
+            ));
 
         Long maxId = loansTakenRepository.findMaxIdBySupplier(supplier.getGst());
         Long nextId = (maxId == null) ? 1L : maxId + 1;
@@ -46,9 +45,9 @@ public class LoansTakenServiceImpl implements LoansTakenService {
     @Override
     public List<LoansTakenDto> allLoans() {
         return loansTakenRepository.findAll()
-                .stream()
-                .map(LoansTakenMapper::maptoLoansTakenDto)
-                .collect(Collectors.toList());
+            .stream()
+            .map(LoansTakenMapper::maptoLoansTakenDto)
+            .collect(Collectors.toList());
     }
 
     @Override

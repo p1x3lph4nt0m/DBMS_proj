@@ -10,16 +10,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PurchaseBookDto {
-
     private Long bill_number;
-
     private int order_day;
-
     private int order_month;
-
     private int order_year;
-
-    private String carrier;   // Foreign key to Driver.licenseNumber
-
-    private String provider;      // Foreign key to Supplier.gstNumber
+    private String carrier;
+    private String provider;
 }

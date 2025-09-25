@@ -42,14 +42,5 @@ public class SalesBookController{
         return new ResponseEntity<>(sales, HttpStatus.OK);
     }
 
-    // http://localhost:8080/sales-book/search?start_date=2025-09-01&end_date=2025-09-21&gst=GSTBUY
 }
 
-// {
-//   "bill_number": 1001,
-//   "order_day": 21,
-//   "order_month": 9,
-//   "order_year": 2025,
-//   "carrier": "DL12345",
-//   "customer": "GSTBUY002"
-// }
