@@ -6,6 +6,8 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +32,12 @@ public class UsersController {
 
         return ResponseEntity.ok(loggedInUser);
     }
+    /*
+    {
+        "username": "root",
+        "password": "123"
+    };
+    */
 
     @GetMapping("/authorize")
     public ResponseEntity<?> authorize(HttpServletRequest request) {
@@ -46,5 +54,23 @@ public class UsersController {
 
         return ResponseEntity.status(401).body("Unauthorized");
     }
+
+    @GetMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletResponse response) {
+        Cookie cookie = new Cookie("session_id", null);
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Location", "/login");
+
+        return new ResponseEntity<>(headers, HttpStatus.FOUND);
+    }
+    /*
+    todo in frontend. Redirect to psotmapping login instead of get login
+     */
+
 
 }
