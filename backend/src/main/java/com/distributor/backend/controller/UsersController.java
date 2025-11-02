@@ -62,15 +62,7 @@ public class UsersController {
         cookie.setHttpOnly(true);
         cookie.setMaxAge(0);
         response.addCookie(cookie);
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Location", "/login");
-
-        return new ResponseEntity<>(headers, HttpStatus.FOUND);
+        return ResponseEntity.ok("Logged Out Successfully");
     }
-    /*
-    todo in frontend. Redirect to psotmapping login instead of get login
-     */
-
 
 }
